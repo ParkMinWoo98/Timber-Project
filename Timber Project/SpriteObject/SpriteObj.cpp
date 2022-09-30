@@ -1,5 +1,4 @@
 #include "SpriteObj.h"
-#include "../Manager/ResourceMgr.h"
 
 SpriteObj& SpriteObj::operator=(const SpriteObj& ref)
 {

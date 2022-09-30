@@ -13,8 +13,8 @@ public:
 	SpriteObj(const Vector2f& pos = Vector2f());
 	virtual ~SpriteObj();
 
-	virtual void Init() = 0;
-	virtual void Release() = 0;
+	virtual void Init();
+	virtual void Release();
 
 	virtual void Update(float dt);
 	virtual void Draw(RenderWindow& window);

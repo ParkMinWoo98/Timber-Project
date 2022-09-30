@@ -146,7 +146,53 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Scene\CharacterScene.cpp" />
+    <ClCompile Include="Scene\ModeScene.cpp" />
+    <ClCompile Include="Scene\PlayScene.cpp" />
+    <ClCompile Include="Scene\Scene.cpp" />
+    <ClCompile Include="SpriteObject\Background.cpp" />
+    <ClCompile Include="SpriteObject\Branch.cpp" />
+    <ClCompile Include="Manager\CharacterMgr.cpp" />
+    <ClCompile Include="SpriteObject\EffectLog.cpp" />
+    <ClCompile Include="Manager\InputMgr.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Manager\ModeMgr.cpp" />
+    <ClCompile Include="SpriteObject\MovingObj.cpp" />
+    <ClCompile Include="SpriteObject\Player.cpp" />
+    <ClCompile Include="Manager\ResourceMgr.cpp" />
+    <ClCompile Include="Manager\SceneMgr.cpp" />
+    <ClCompile Include="SpriteObject\SpriteObj.cpp" />
+    <ClCompile Include="SpriteObject\Tree.cpp" />
+    <ClCompile Include="Scene\StartScene.cpp" />
+    <ClCompile Include="UI\TextUI.cpp" />
+    <ClCompile Include="UI\TimebarUI.cpp" />
+    <ClCompile Include="UI\UI.cpp" />
+    <ClCompile Include="Utils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="3rd\rapidcsv.h" />
+    <ClInclude Include="3rd\SingleTon.h" />
+    <ClInclude Include="Scene\CharacterScene.h" />
+    <ClInclude Include="Scene\ModeScene.h" />
+    <ClInclude Include="Scene\PlayScene.h" />
+    <ClInclude Include="Scene\Scene.h" />
+    <ClInclude Include="SpriteObject\Background.h" />
+    <ClInclude Include="SpriteObject\Branch.h" />
+    <ClInclude Include="Manager\CharacterMgr.h" />
+    <ClInclude Include="SpriteObject\EffectLog.h" />
+    <ClInclude Include="Manager\InputMgr.h" />
+    <ClInclude Include="Manager\ModeMgr.h" />
+    <ClInclude Include="SpriteObject\MovingObj.h" />
+    <ClInclude Include="SpriteObject\Player.h" />
+    <ClInclude Include="Manager\ResourceMgr.h" />
+    <ClInclude Include="Manager\SceneMgr.h" />
+    <ClInclude Include="SpriteObject\SpriteObj.h" />
+    <ClInclude Include="SpriteObject\Tree.h" />
+    <ClInclude Include="Scene\StartScene.h" />
+    <ClInclude Include="UI\TextUI.h" />
+    <ClInclude Include="UI\TimebarUI.h" />
+    <ClInclude Include="UI\UI.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
