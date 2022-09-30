@@ -4,13 +4,13 @@
 #include "../Scene/CharacterScene.h"
 #include "../Scene/PlayScene.h"
 
-SceneMgr::SceneMgr()
-	:currentScene(Scenes::start)
+SceneMgr::SceneMgr(RenderWindow& window, Time& dt)
+	:currentScene(Scenes::start), dt(dt)
 {
-	sceneList.push_back(new StartScene);
-	sceneList.push_back(new ModeScene);
-	sceneList.push_back(new CharacterScene);
-	sceneList.push_back(new PlayScene);
+	sceneList.push_back(new StartScene(window));
+	sceneList.push_back(new ModeScene(window));
+	sceneList.push_back(new CharacterScene(window));
+	sceneList.push_back(new PlayScene(window, dt));
 }
 
 SceneMgr::~SceneMgr()
@@ -19,8 +19,15 @@ SceneMgr::~SceneMgr()
 
 void SceneMgr::Update()
 {
+	if (sceneList[(int)currentScene]->GetSceneEnd() == true)
+	{
+		currentScene = (Scenes)((int)currentScene + 1);
+		sceneList[(int)currentScene]->Init();
+	}
+	sceneList[(int)currentScene]->Update();
 }
 
-void SceneMgr::Draw()
+void SceneMgr::Draw(RenderWindow& window)
 {
+	sceneList[(int)currentScene]->Draw(window);
 }

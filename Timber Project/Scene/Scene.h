@@ -13,14 +13,15 @@ class Scene
 {
 protected:
 	Sound bgm;
-	list<SpriteObj*> objList;
+
+	RenderWindow& window;
 	ResourceMgr* resourceMgr;
 	bool isSceneEnd;
 
 	Scene(const Scene&);
 	Scene& operator=(const Scene&);
 public:
-	Scene();
+	Scene(RenderWindow& window);
 	virtual ~Scene();
 
 	virtual void Init();

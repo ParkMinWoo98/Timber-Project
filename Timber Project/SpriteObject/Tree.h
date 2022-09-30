@@ -34,6 +34,8 @@ public:
 
 	void SetPlayerPtr(Player* ptr);
 	void UpdateBranches();
+	void SetCurrentBranch(Sides side);
+	Sides GetCurrentBranchSide();
 	void ShowLogEffect();
 	void ClearLog();
 };

@@ -42,7 +42,7 @@ public:
 	bool GetAlive() const;
 	Sides GetPos() const;
 
-	void Kill(); // 플레이어 죽이는 함수
+	void CheckDeath();
 	void Chop(Sides side);
 };
 

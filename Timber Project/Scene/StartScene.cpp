@@ -1,33 +1,37 @@
 #include "StartScene.h"
 #include "../Manager/ResourceMgr.h"
 #include "../SpriteObject/Background.h"
+#include "../Manager/InputMgr.h"
 
-StartScene::StartScene()
-	:Scene()
+StartScene::StartScene(RenderWindow& window)
+	:Scene(window)
 {
 	bgm.setBuffer(*resourceMgr->GetSoundBuffer("start scene start bgm"));
-	objList.push_back(new Background(*resourceMgr->GetTexture("start scene background")));
+	background = new Background(*resourceMgr->GetTexture("start scene background"));
 }
 
 StartScene::~StartScene()
 {
+	if (background != nullptr)
+		delete background;
+	background = nullptr;
 }
 
 void StartScene::Init()
 {
-
 }
 
 void StartScene::Release()
 {
 }
 
-void StartScene::Update(float dt)
+void StartScene::Update()
 {
+	if (InputMgr::GetKeyDown(Keyboard::Key::Return))
+		isSceneEnd = true;
 }
 
 void StartScene::Draw(RenderWindow& window)
 {
-	for (auto elem : objList)
-		elem->Draw(window);
+	background->Draw(window);
 }

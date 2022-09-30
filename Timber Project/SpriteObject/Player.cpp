@@ -108,16 +108,19 @@ Sides Player::GetPos() const
 	return pos;
 }
 
-void Player::Kill()
+void Player::CheckDeath()
 {
-	isAlive = false;
-	isChopping = false;
+	if (pos == treePtr->GetCurrentBranchSide())
+	{
+		isAlive = false;
+		isChopping = false;
 
-	// rip sprite로 변경(안 뒤집히도록)
-	sprite.setTexture(texRip, true);
-	Utils::SetOrigin(sprite, Origins::BC);
-	SpriteObj::SetFlipX(false);
-	dieSound.play();
+		// rip sprite로 변경(안 뒤집히도록)
+		sprite.setTexture(texRip, true);
+		Utils::SetOrigin(sprite, Origins::BC);
+		SpriteObj::SetFlipX(false);
+		dieSound.play();
+	}
 }
 
 void Player::Chop(Sides side)

@@ -1,6 +1,7 @@
 #pragma once
-#include <list>
+#include <vector>
 #include "../Scene/Scene.h"
+#include "SFML/Graphics.hpp"
 
 using namespace std;
 
@@ -15,14 +16,17 @@ enum class Scenes
 class SceneMgr
 {
 private:
-	list<Scene*> sceneList;
+	vector<Scene*> sceneList;
+	Time& dt;
 
 	Scenes currentScene;
 public:
-	SceneMgr();
+	SceneMgr(RenderWindow& window, Time& dt);
 	~SceneMgr();
 
+	void Init();
+	void Release();
 	void Update();
-	void Draw();
+	void Draw(RenderWindow& window);
 };
 

@@ -1,5 +1,6 @@
 #include "Tree.h"
 #include "Player.h"
+#include "../Manager/InputMgr.h"
 
 Tree::Tree(const Vector2f& pos)
 	:SpriteObj(*resourceMgr->GetTexture("treebody png"), pos), currentBranch(-1), playerPtr(nullptr)
@@ -66,8 +67,13 @@ void Tree::Release()
 
 void Tree::Update(float dt)
 {
-    // branch 하강
-    UpdateBranches();
+    if (!playerPtr->GetAlive())
+        return;
+    if (InputMgr::GetKeyDown(Keyboard::Key::Left) || InputMgr::GetKeyDown(Keyboard::Key::Right))
+    {
+        // branch 하강
+        UpdateBranches();
+    }
     // log 시간 지났으면 삭제
     auto it = useLogs.begin();
     while (it != useLogs.end())
@@ -115,6 +121,16 @@ void Tree::UpdateBranches()
             branches[index]->SetSide((Sides)Utils::Range(0, 3));
         }
     }
+}
+
+void Tree::SetCurrentBranch(Sides side)
+{
+    branches[currentBranch]->SetSide(side);
+}
+
+Sides Tree::GetCurrentBranchSide()
+{
+    return branches[currentBranch]->GetSide();
 }
 
 void Tree::ShowLogEffect()

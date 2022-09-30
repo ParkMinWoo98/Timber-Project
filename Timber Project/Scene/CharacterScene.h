@@ -1,6 +1,15 @@
 #pragma once
 #include "Scene.h"
-class CharacterScene : public Scene
+
+enum class Characters
 {
+	Red,
+	Green,
+	Yellow,
 };
 
+class CharacterScene : public Scene
+{
+protected:
+public:
+};
