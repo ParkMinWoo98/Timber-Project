@@ -5,6 +5,9 @@
 
 using namespace std;
 
+enum class Modes;
+enum class Characters;
+
 enum class Scenes
 {
 	start,

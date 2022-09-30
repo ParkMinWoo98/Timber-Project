@@ -3,7 +3,7 @@
 #include <Windows.h>
 #include <vector>
 
-enum class Modes;
+class ModeScene;
 enum class Characters;
 
 class Player;
@@ -18,6 +18,8 @@ protected:
 
 	vector<Player*> player;
 	vector<Tree*> tree;
+
+	ModeScene& modeScene;
 
 	Time& dt;
 	float timer;

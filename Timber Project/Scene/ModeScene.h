@@ -9,6 +9,7 @@ enum class Modes
 {
 	single,
 	duel,
+	none
 };
 
 class ModeScene : public Scene

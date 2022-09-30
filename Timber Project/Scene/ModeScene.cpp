@@ -7,7 +7,7 @@
 #include "../Manager/InputMgr.h"
 
 ModeScene::ModeScene(RenderWindow& window)
-	:Scene(window), mode(Modes::single)
+	:Scene(window), mode(Modes::none)
 {
 	bgm.setBuffer(*resourceMgr->GetSoundBuffer("mode scene start bgm"));
 	background = new Background(*resourceMgr->GetTexture("mode scene start background"));
