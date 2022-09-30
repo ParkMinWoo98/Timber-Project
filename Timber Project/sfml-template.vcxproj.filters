@@ -72,9 +72,6 @@
     <ClCompile Include="Scene\CharacterScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\PlayScene.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="SpriteObject\Bee.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -82,6 +79,18 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="SpriteObject\Button.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SinglePlayScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\DuelPlayScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SingleCharacterScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\DuelCharacterScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -146,9 +155,6 @@
     <ClInclude Include="Scene\CharacterScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\PlayScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="SpriteObject\Bee.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -156,6 +162,18 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="SpriteObject\Button.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SinglePlayScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\DuelPlayScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SingleCharacterScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\DuelCharacterScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

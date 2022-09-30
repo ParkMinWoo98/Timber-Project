@@ -1,6 +1,5 @@
 #pragma once
 #include "Scene.h"
-#include <Windows.h>
 
 class Background;
 class Button;

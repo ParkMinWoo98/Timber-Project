@@ -8,21 +8,19 @@ enum class Characters
 	Red,
 	Green,
 	Yellow,
-	none
 };
 
-class CharacterScene : public Scene
+class SingleCharacterScene : public Scene
 {
 protected:
-	vector<Characters> characters;
-	vector<SpriteObj*> player1;
-	vector<SpriteObj*> player2;
+	Characters characters;
+	vector<SpriteObj*> player;
 	Background* background;
 
-	CharacterScene(const CharacterScene&);
+	SingleCharacterScene(const SingleCharacterScene&);
 public:
-	CharacterScene(RenderWindow& window);
-	virtual ~CharacterScene();
+	SingleCharacterScene(RenderWindow& window);
+	virtual ~SingleCharacterScene();
 
 	virtual void Init();
 	virtual void Release();

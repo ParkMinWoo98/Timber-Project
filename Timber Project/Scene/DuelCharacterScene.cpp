@@ -1,4 +1,4 @@
-#include "CharacterScene.h"
+#include "DuelCharacterScene.h"
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
 #include "../Manager/ResourceMgr.h"
@@ -7,7 +7,7 @@
 #include "../Manager/InputMgr.h"
 #include "../SpriteObject/Background.h"
 
-CharacterScene::CharacterScene(RenderWindow& window)
+DuelCharacterScene::DuelCharacterScene(RenderWindow& window)
 	:Scene(window)
 {
 	bgm.setBuffer(*resourceMgr->GetSoundBuffer("char scene start bgm"));
@@ -18,9 +18,13 @@ CharacterScene::CharacterScene(RenderWindow& window)
 	player2.push_back(new Background(*resourceMgr->GetTexture("char 1"), Vector2f(this->window.getSize().x * 0.75, 500)));
 	player2.push_back(new Background(*resourceMgr->GetTexture("char 2"), Vector2f(this->window.getSize().x * 0.75, 500)));
 	player2.push_back(new Background(*resourceMgr->GetTexture("char 3"), Vector2f(this->window.getSize().x * 0.75, 500)));
+	for (int i = 0; i < 2; ++i)
+	{
+		characters.push_back(Characters::Red);
+	}
 }
 
-CharacterScene::~CharacterScene()
+DuelCharacterScene::~DuelCharacterScene()
 {
 	if (background != nullptr)
 		delete background;
@@ -35,34 +39,36 @@ CharacterScene::~CharacterScene()
 	}
 }
 
-void CharacterScene::Init()
+void DuelCharacterScene::Init()
 {
 }
 
-void CharacterScene::Update()
+void DuelCharacterScene::Update()
 {
-	if (InputMgr::GetKeyDown(Keyboard::Key::Left) && charaters)
+	if (InputMgr::GetKeyDown(Keyboard::Key::A) && characters[0] != Characters::Red)
 	{
-		buttons[0]->ButtonEffect();
-		buttons[1]->EndEffect();
+		characters[0] = (Characters)((int)characters[0] - 1);
 	}
-	if (InputMgr::GetKeyDown(Keyboard::Key::Right) && mode != Modes::duel)
+	if (InputMgr::GetKeyDown(Keyboard::Key::D) && characters[0] != Characters::Yellow)
 	{
-		buttons[1]->ButtonEffect();
-		buttons[0]->EndEffect();
+		characters[0] = (Characters)((int)characters[0] + 1);
 	}
-	if (InputMgr::GetKeyDown(Keyboard::Key::Return))
+	if (InputMgr::GetKeyDown(Keyboard::Key::Left) && characters[1] != Characters::Red)
 	{
-		buttons[(int)mode]->SelectedSoundEffect();
-		isSceneEnd = true;
+		characters[1] = (Characters)((int)characters[1] - 1);
+	}
+	if (InputMgr::GetKeyDown(Keyboard::Key::Right) && characters[1] != Characters::Yellow)
+	{
+		characters[1] = (Characters)((int)characters[1] + 1);
 	}
 }
 
-void CharacterScene::Draw(RenderWindow& window)
+void DuelCharacterScene::Draw(RenderWindow& window)
 {
+	
 }
 
-vector<Button*> CharacterScene::GetCharacters()
+vector<Button*> DuelCharacterScene::GetCharacters()
 {
 	return buttons;
 }

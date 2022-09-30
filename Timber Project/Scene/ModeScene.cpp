@@ -12,7 +12,7 @@ ModeScene::ModeScene(RenderWindow& window)
 	bgm.setBuffer(*resourceMgr->GetSoundBuffer("mode scene start bgm"));
 	background = new Background(*resourceMgr->GetTexture("mode scene start background"));
 	buttons.push_back(new Button(*resourceMgr->GetTexture("mode scene button1"), Vector2f(this->window.getSize().x * 0.25, 500)));
-	buttons.push_back(new Button(*resourceMgr->GetTexture("mode scene button1"), Vector2f(this->window.getSize().x * 0.75, 500)));
+	buttons.push_back(new Button(*resourceMgr->GetTexture("mode scene button2"), Vector2f(this->window.getSize().x * 0.75, 500)));
 }
 
 ModeScene::~ModeScene()

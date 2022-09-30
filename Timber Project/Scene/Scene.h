@@ -26,7 +26,7 @@ public:
 
 	virtual void Init();
 	virtual void Release();
-	virtual void Update(float dt);
+	virtual void Update();
 	virtual void Draw(RenderWindow& window);
 
 	bool GetSceneEnd();

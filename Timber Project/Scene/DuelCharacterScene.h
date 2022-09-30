@@ -8,10 +8,9 @@ enum class Characters
 	Red,
 	Green,
 	Yellow,
-	none
 };
 
-class CharacterScene : public Scene
+class DuelCharacterScene : public Scene
 {
 protected:
 	vector<Characters> characters;
@@ -19,10 +18,10 @@ protected:
 	vector<SpriteObj*> player2;
 	Background* background;
 
-	CharacterScene(const CharacterScene&);
+	DuelCharacterScene(const DuelCharacterScene&);
 public:
-	CharacterScene(RenderWindow& window);
-	virtual ~CharacterScene();
+	DuelCharacterScene(RenderWindow& window);
+	virtual ~DuelCharacterScene();
 
 	virtual void Init();
 	virtual void Release();

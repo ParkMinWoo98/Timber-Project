@@ -146,12 +146,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Scene\DuelCharacterScene.cpp" />
+    <ClCompile Include="Scene\DuelPlayScene.cpp" />
+    <ClCompile Include="Scene\SinglePlayScene.cpp" />
+    <ClCompile Include="Scene\SingleCharacterScene.cpp" />
     <ClCompile Include="SpriteObject\Button.cpp" />
     <ClCompile Include="SpriteObject\Bee.cpp" />
     <ClCompile Include="SpriteObject\Cloud.cpp" />
     <ClCompile Include="Scene\CharacterScene.cpp" />
     <ClCompile Include="Scene\ModeScene.cpp" />
-    <ClCompile Include="Scene\PlayScene.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
     <ClCompile Include="SpriteObject\Background.cpp" />
     <ClCompile Include="SpriteObject\Branch.cpp" />
@@ -173,12 +176,15 @@
   <ItemGroup>
     <ClInclude Include="3rd\rapidcsv.h" />
     <ClInclude Include="3rd\SingleTon.h" />
+    <ClInclude Include="Scene\DuelCharacterScene.h" />
+    <ClInclude Include="Scene\DuelPlayScene.h" />
+    <ClInclude Include="Scene\SinglePlayScene.h" />
+    <ClInclude Include="Scene\SingleCharacterScene.h" />
     <ClInclude Include="SpriteObject\Button.h" />
     <ClInclude Include="SpriteObject\Bee.h" />
     <ClInclude Include="SpriteObject\Cloud.h" />
     <ClInclude Include="Scene\CharacterScene.h" />
     <ClInclude Include="Scene\ModeScene.h" />
-    <ClInclude Include="Scene\PlayScene.h" />
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="SpriteObject\Background.h" />
     <ClInclude Include="SpriteObject\Branch.h" />

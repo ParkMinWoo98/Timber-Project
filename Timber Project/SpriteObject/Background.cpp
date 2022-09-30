@@ -1,6 +1,6 @@
 #include "Background.h"
 
-Background::Background(const Texture& tex, const Vector2f& pos = Vector2f())
+Background::Background(const Texture& tex, const Vector2f& pos)
 	:SpriteObj(tex, pos)
 {
 }

@@ -2,7 +2,8 @@
 #include "../Scene/StartScene.h"
 #include "../Scene/ModeScene.h"
 #include "../Scene/CharacterScene.h"
-#include "../Scene/PlayScene.h"
+#include "../Scene/SinglePlayScene.h"
+#include "../Scene/DuelPlayScene.h"
 
 SceneMgr::SceneMgr(RenderWindow& window, Time& dt)
 	:currentScene(Scenes::start), dt(dt)
@@ -10,7 +11,8 @@ SceneMgr::SceneMgr(RenderWindow& window, Time& dt)
 	sceneList.push_back(new StartScene(window));
 	sceneList.push_back(new ModeScene(window));
 	sceneList.push_back(new CharacterScene(window));
-	sceneList.push_back(new PlayScene(window, dt));
+	sceneList.push_back(new SinglePlayScene(window, dt));
+	sceneList.push_back(new SinglePlayScene(window, dt));
 }
 
 SceneMgr::~SceneMgr()

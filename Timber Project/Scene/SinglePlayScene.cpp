@@ -1,4 +1,4 @@
-#include "PlayScene.h"
+#include "SinglePlayScene.h"
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
 #include "../Manager/ResourceMgr.h"
@@ -10,9 +10,10 @@
 #include "../Scene/ModeScene.h"
 #include "../Scene/CharacterScene.h"
 #include "../Manager/InputMgr.h"
+#include "CharacterScene.h"
 
-PlayScene::PlayScene(Modes mode, vector<Characters> characters, RenderWindow& window, Time& dt)
-	:Scene(window), currentMode(mode), dt(dt), isPause(false)
+SinglePlayScene::SinglePlayScene(RenderWindow& window, Time& dt)
+	:Scene(window), dt(dt), isPause(false), characters({Characters::Red})
 {
 	bgm.setBuffer(*resourceMgr->GetSoundBuffer("play scene start bgm"));
 	objList.push_back(new Background(*resourceMgr->GetTexture("play scene start background")));
@@ -21,45 +22,22 @@ PlayScene::PlayScene(Modes mode, vector<Characters> characters, RenderWindow& wi
 		objList.push_back(new Cloud());
 		objList.push_back(new Bee());
 	}
-	switch (currentMode)
-	{
-	case Modes::single: 
-		{
-			tree.push_back(new Tree(Vector2f(this->window.getSize().x * 0.5f, 910)));
-			player.push_back(new Player(GetCharacterTex(characters[0])));
-			tree[0]->SetPlayerPtr(player[0]);
-			player[0]->SetTreePtr(tree[0]);
-			objList.push_back(tree[0]);
-			objList.push_back(player[0]);
-		}
-		break;
-	case Modes::duel:
-		{
-			tree.push_back(new Tree(Vector2f(this->window.getSize().x * 0.25f, 910)));
-			tree.push_back(new Tree(Vector2f(this->window.getSize().x * 0.75f, 910)));
-			player.push_back(new Player(GetCharacterTex(characters[0])));
-			player.push_back(new Player(GetCharacterTex(characters[1])));
-			for (int i = 0; i < 2; ++i)
-			{
-				player[i]->SetTreePtr(tree[i]);
-				tree[i]->SetPlayerPtr(player[i]);
-			}
-			for (int i = 0; i < 2; ++i)
-			{
-				objList.push_back(tree[i]);
-				objList.push_back(player[i]);
-			}
-		}
-		break;
-	}
+
+	tree.push_back(new Tree(Vector2f(this->window.getSize().x * 0.5f, 910)));
+	player.push_back(new Player(GetCharacterTex(characters[0])));
+	tree[0]->SetPlayerPtr(player[0]);
+	player[0]->SetTreePtr(tree[0]);
+	objList.push_back(tree[0]);
+	objList.push_back(player[0]);
+
 	timeOutSound.setBuffer(*resourceMgr->GetSoundBuffer("time out sound wav"));
 }
 
-PlayScene::~PlayScene()
+SinglePlayScene::~SinglePlayScene()
 {
 }
 
-Texture& PlayScene::GetCharacterTex(Characters character)
+Texture& SinglePlayScene::GetCharacterTex(Characters character)
 {
 	switch (character)
 	{
@@ -72,7 +50,13 @@ Texture& PlayScene::GetCharacterTex(Characters character)
 	}
 }
 
-void PlayScene::Init()
+void SinglePlayScene::SetCharacter(CharacterScene& characterScene)
+{
+	this->characterScene = characterScene;
+	characters = this->characterScene.GetCharacters();
+}
+
+void SinglePlayScene::Init()
 {
 	Scene::Init();
 	for (auto obj : objList)
@@ -83,13 +67,12 @@ void PlayScene::Init()
 	timer = duration;
 }
 
-void PlayScene::Release()
+void SinglePlayScene::Release()
 {
 }
 
-void PlayScene::Update()
+void SinglePlayScene::Update()
 {
-	float deltaTime = isPause ? 0.f : dt.asSeconds();
 	if (InputMgr::GetKeyDown(Keyboard::Key::Return))
 	{
 		if (timer > 0.f && isAllAlive())
@@ -141,7 +124,7 @@ void PlayScene::Update()
 	}
 }
 
-void PlayScene::Draw()
+void SinglePlayScene::Draw()
 {
 	for (auto obj : objList)
 	{
@@ -154,12 +137,12 @@ void PlayScene::Draw()
 	// 메시지 제외 ui 출력
 }
 
-void PlayScene::SetTimer(float duration)
+void SinglePlayScene::SetTimer(float duration)
 {
 	this->duration = duration;
 }
 
-bool PlayScene::isAllAlive() const
+bool SinglePlayScene::isAllAlive() const
 {
 	for (auto p : player)
 	{

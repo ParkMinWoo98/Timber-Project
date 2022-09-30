@@ -3,23 +3,22 @@
 #include <Windows.h>
 #include <vector>
 
-class ModeScene;
+class CharacterScene;
 enum class Characters;
 
 class Player;
 class Tree;
 
-class PlayScene : public Scene
+class DuelPlayScene : public Scene
 {
 protected:
 	list<SpriteObj*> objList;
-	Modes currentMode;
 	vector<Characters> characters;
 
 	vector<Player*> player;
 	vector<Tree*> tree;
 
-	ModeScene& modeScene;
+	CharacterScene& characterScene;
 
 	Time& dt;
 	float timer;
@@ -28,11 +27,11 @@ protected:
 
 	Sound timeOutSound;
 
-	PlayScene(const PlayScene&);
-	PlayScene& operator=(const PlayScene&);
+	DuelPlayScene(const DuelPlayScene&);
+	DuelPlayScene& operator=(const DuelPlayScene&);
 public:
-	PlayScene(Modes mode, vector<Characters> characters, RenderWindow& window, Time& dt);
-	virtual ~PlayScene();
+	DuelPlayScene(RenderWindow& window, Time& dt);
+	virtual ~DuelPlayScene();
 
 	Texture& GetCharacterTex(Characters character);
 

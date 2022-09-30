@@ -22,7 +22,7 @@ void Scene::Release()
 {
 }
 
-void Scene::Update(float dt)
+void Scene::Update()
 {
 }
 
