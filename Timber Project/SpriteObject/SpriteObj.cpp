@@ -5,26 +5,13 @@ SpriteObj& SpriteObj::operator=(const SpriteObj& ref)
 	return *this;
 }
 
-SpriteObj::SpriteObj(const Vector2f& pos)
+SpriteObj::SpriteObj(const Texture& tex, const Vector2f& pos)
 {
-
-	sprite.setTexture(*);
+	sprite.setTexture(tex);
 	sprite.setPosition(pos);
 }
 
 SpriteObj::~SpriteObj()
-{
-}
-
-void SpriteObj::Init()
-{
-}
-
-void SpriteObj::Release()
-{
-}
-
-void SpriteObj::Update(float dt)
 {
 }
 
@@ -44,12 +31,12 @@ Vector2f SpriteObj::GetSize() const
 	return Vector2f(rect.width, rect.height);
 }
 
-Vector2f SpriteObj::GetPosition()
+Vector2f SpriteObj::GetPosition() const
 {
 	return sprite.getPosition();
 }
 
-void SpriteObj::SetPosition(Vector2f pos)
+void SpriteObj::SetPosition(const Vector2f& pos)
 {
 	sprite.setPosition(pos);
 }

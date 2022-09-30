@@ -7,9 +7,20 @@
 SceneMgr::SceneMgr()
 	:currentScene(Scenes::start)
 {
-	sceneList.push_back(new StartScene)
+	sceneList.push_back(new StartScene);
+	sceneList.push_back(new ModeScene);
+	sceneList.push_back(new CharacterScene);
+	sceneList.push_back(new PlayScene);
 }
 
 SceneMgr::~SceneMgr()
+{
+}
+
+void SceneMgr::Update()
+{
+}
+
+void SceneMgr::Draw()
 {
 }

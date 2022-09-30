@@ -4,6 +4,7 @@
 #include <map>
 #include "../3rd/SingleTon.h"
 #include "../3rd/rapidcsv.h"
+
 using namespace sf;
 using namespace std;
 

@@ -152,11 +152,9 @@
     <ClCompile Include="Scene\Scene.cpp" />
     <ClCompile Include="SpriteObject\Background.cpp" />
     <ClCompile Include="SpriteObject\Branch.cpp" />
-    <ClCompile Include="Manager\CharacterMgr.cpp" />
     <ClCompile Include="SpriteObject\EffectLog.cpp" />
     <ClCompile Include="Manager\InputMgr.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Manager\ModeMgr.cpp" />
     <ClCompile Include="SpriteObject\MovingObj.cpp" />
     <ClCompile Include="SpriteObject\Player.cpp" />
     <ClCompile Include="Manager\ResourceMgr.cpp" />
@@ -178,10 +176,8 @@
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="SpriteObject\Background.h" />
     <ClInclude Include="SpriteObject\Branch.h" />
-    <ClInclude Include="Manager\CharacterMgr.h" />
     <ClInclude Include="SpriteObject\EffectLog.h" />
     <ClInclude Include="Manager\InputMgr.h" />
-    <ClInclude Include="Manager\ModeMgr.h" />
     <ClInclude Include="SpriteObject\MovingObj.h" />
     <ClInclude Include="SpriteObject\Player.h" />
     <ClInclude Include="Manager\ResourceMgr.h" />

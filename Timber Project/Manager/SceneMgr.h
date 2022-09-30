@@ -22,6 +22,7 @@ public:
 	SceneMgr();
 	~SceneMgr();
 
-
+	void Update();
+	void Draw();
 };
 

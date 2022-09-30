@@ -21,12 +21,6 @@
     <ClCompile Include="Manager\SceneMgr.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Manager\ModeMgr.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Manager\CharacterMgr.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Manager\InputMgr.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -84,12 +78,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Manager\SceneMgr.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Manager\ModeMgr.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Manager\CharacterMgr.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Manager\InputMgr.h">
