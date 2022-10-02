@@ -114,7 +114,7 @@ bool ResourceMgr::LoadSoundBuffer(string id)
     return true;
 }
 
-Texture* ResourceMgr::GetTexture(string id)
+Texture* ResourceMgr::GetTexture(string id) const
 {
     auto it = texMap.find(id);
     if (it == texMap.end())
@@ -122,7 +122,7 @@ Texture* ResourceMgr::GetTexture(string id)
     return it->second;
 }
 
-Font* ResourceMgr::GetFont(string id)
+Font* ResourceMgr::GetFont(string id) const
 {
     auto it = fontMap.find(id);
     if (it == fontMap.end())
@@ -130,7 +130,7 @@ Font* ResourceMgr::GetFont(string id)
     return it->second;
 }
 
-SoundBuffer* ResourceMgr::GetSoundBuffer(string id)
+SoundBuffer* ResourceMgr::GetSoundBuffer(string id) const
 {
     auto it = soundMap.find(id);
     if (it == soundMap.end())

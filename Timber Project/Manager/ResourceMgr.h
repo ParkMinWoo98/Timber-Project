@@ -35,9 +35,9 @@ public:
 	bool LoadFont(string id);
 	bool LoadSoundBuffer(string id);
 
-	Texture* GetTexture(string id);
-	Font* GetFont(string id);
-	SoundBuffer* GetSoundBuffer(string id);
+	Texture* GetTexture(string id) const;
+	Font* GetFont(string id) const;
+	SoundBuffer* GetSoundBuffer(string id) const;
 };
 
 
