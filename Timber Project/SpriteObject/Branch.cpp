@@ -1,7 +1,7 @@
 #include "Branch.h"
 
-Branch::Branch(Sprite& treeBody)
-	:SpriteObj(*resourceMgr->GetTexture("branch png")), treeBody(treeBody), side(Sides::Left)
+Branch::Branch(const Texture& tex, Sprite& treeBody)
+	:SpriteObj(tex), treeBody(treeBody), side(Sides::Left)
 {
 }
 

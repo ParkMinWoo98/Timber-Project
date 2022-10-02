@@ -2,12 +2,13 @@ id,type
 sound/out_of_time.wav,2
 sound/death.wav,2
 sound/chop.wav,2
-sound/game_bgm1.mp3,2
-sound/game_bgm2.mp3,2
-sound/game_bgm3.mp3,2
-sound/game_bgm4.mp3,2
+sound/game_bgm_character.wav,2
+sound/game_bgm_play.wav,2
+sound/game_bgm_mode.wav,2
+sound/game_bgm_start.wav,2
 sound/game_move_button.wav,2
 sound/game_click_button.wav,2
+fonts/KOMIKAP_.ttf,1
 graphics/background_play.png,0
 graphics/bee.png,0
 graphics/cloud.png,0
@@ -25,4 +26,3 @@ graphics/2p.png,0
 graphics/background_start.jpg,0
 graphics/background_mode.jpg,0
 graphics/background_character.jpg,0
-fonts/KOMIKAP_.ttf,1

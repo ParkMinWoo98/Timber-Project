@@ -6,6 +6,12 @@
 enum class Sides;
 class Tree;
 
+enum class KeyModes
+{
+	FirstPlayer,
+	SecondPlayer
+};
+
 class Player : public SpriteObj
 {
 protected:
@@ -16,6 +22,8 @@ protected:
 	Texture& texPlayer;
 	Texture& texRip;
 
+	KeyModes keyMode;
+
 	Sprite axe;
 	Vector2f axePos;
 	bool isChopping;
@@ -25,7 +33,7 @@ protected:
 
 	Tree* treePtr;
 public:
-	Player(Texture& texPlayer);
+	Player(Texture& texPlayer, KeyModes keyMode = KeyModes::FirstPlayer);
 	virtual ~Player();
 
 	void Set();
@@ -37,6 +45,7 @@ public:
 	virtual void SetPosition(Vector2f pos);
 	virtual void SetFlipX(bool flip);
 
+	void SetTexPlayer(Texture& texplayer);
 	void SetTreePtr(Tree* ptr);
 
 	bool GetAlive() const;

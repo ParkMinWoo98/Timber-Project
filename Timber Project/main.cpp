@@ -11,15 +11,17 @@ int main()
     Time dt;
 
     SceneMgr sceneMgr(window, dt);
+    sceneMgr.Init();
     while (window.isOpen())
     {
-        Time dt = clock.restart();
+        dt = clock.restart();
+
+        InputMgr::ClearInput();
         Event ev;
-        while (window.pollEvent(ev))
+        if (window.pollEvent(ev))
         {
             InputMgr::UpdateInput(ev);
         }
-        InputMgr::ClearInput();
         if (Keyboard::isKeyPressed(Keyboard::Escape))
         {
             window.close();

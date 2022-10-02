@@ -1,8 +1,12 @@
 #include "Cloud.h"
 #include "../Manager/ResourceMgr.h"
 
-Cloud::Cloud()
-	:MovingObj(*resourceMgr->GetTexture("cloud png"))
+Cloud::Cloud(const Texture& tex)
+	:MovingObj(tex)
+{
+}
+
+Cloud::~Cloud()
 {
 }
 

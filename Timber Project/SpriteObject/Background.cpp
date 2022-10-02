@@ -5,6 +5,10 @@ Background::Background(const Texture& tex, const Vector2f& pos)
 {
 }
 
+Background::~Background()
+{
+}
+
 void Background::Draw(RenderWindow& window)
 {
 	SpriteObj::Draw(window);

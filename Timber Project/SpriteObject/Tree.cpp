@@ -2,19 +2,19 @@
 #include "Player.h"
 #include "../Manager/InputMgr.h"
 
-Tree::Tree(const Vector2f& pos)
-	:SpriteObj(*resourceMgr->GetTexture("treebody png"), pos), currentBranch(-1), playerPtr(nullptr)
+Tree::Tree(const Texture& texTree, KeyModes keyMode, const Vector2f& pos)
+	:SpriteObj(texTree, pos), currentBranch(-1), playerPtr(nullptr)
 {
+    SpriteObj::SetOrigin(Origins::BC);
     // branches 생성
     for (int i = 0; i < 6; ++i)
     {
-        branches.push_back(new Branch(sprite));
-        if (i == 0)
-            branches[i]->SetSide(Sides::Left);
-        else
-        {
-            branches[i]->SetSide((Sides)Utils::Range(0, 3));
-        }
+        branches.push_back(new Branch(*resourceMgr->GetTexture("graphics/branch.png"), sprite));
+        branches[i]->SetSide((Sides)Utils::Range(0, 3));
+    }
+    for (auto branch : branches)
+    {
+        branch->Init();
     }
     // branches 값 초기화
     float x = branches[0]->GetPosition().x;
@@ -27,11 +27,12 @@ Tree::Tree(const Vector2f& pos)
         y -= offset;
     }
     UpdateBranches();
+    branches[currentBranch]->SetSide(Sides::None);
 
     // Logs Pool 생성
     for (int i = 0; i < 100; ++i)
     {
-        auto log = new EffectLog(*resourceMgr->GetTexture("log png"), 5.f);
+        auto log = new EffectLog(*resourceMgr->GetTexture("graphics/log.png"), 5.f);
         unuseLogs.push_back(log);
     }
 }
@@ -42,12 +43,13 @@ Tree::~Tree()
 
 void Tree::Init()
 {
-    branches[0]->SetSide(Sides::Left);
-    for (int i = 1; i < 6; ++i)
-    {
+    ClearLog();
+    for (int i = 0; i < 6; ++i)
+    { 
         branches[i]->SetSide((Sides)Utils::Range(0, 3));
     }
     UpdateBranches();
+    branches[currentBranch]->SetSide(Sides::None);
 }
 
 void Tree::Release()
@@ -69,11 +71,18 @@ void Tree::Update(float dt)
 {
     if (!playerPtr->GetAlive())
         return;
-    if (InputMgr::GetKeyDown(Keyboard::Key::Left) || InputMgr::GetKeyDown(Keyboard::Key::Right))
+    switch (keyMode)
     {
-        // branch 하강
-        UpdateBranches();
+    case KeyModes::FirstPlayer:
+        if (InputMgr::GetKeyDown(Keyboard::Key::A) || InputMgr::GetKeyDown(Keyboard::Key::D))
+            UpdateBranches(); // branch 하강
+        break;
+    case KeyModes::SecondPlayer:
+        if (InputMgr::GetKeyDown(Keyboard::Key::Left) || InputMgr::GetKeyDown(Keyboard::Key::Right))
+            UpdateBranches(); // branch 하강
+        break;
     }
+   
     // log 시간 지났으면 삭제
     auto it = useLogs.begin();
     while (it != useLogs.end())
@@ -94,13 +103,13 @@ void Tree::Update(float dt)
 void Tree::Draw(RenderWindow& window)
 {
     SpriteObj::Draw(window);
-    for (auto branch : branches)
-    {
-        branch->Draw(window);
-    }
     for (auto log : useLogs)
     {
         log->Draw(window);
+    }
+    for (auto branch : branches)
+    {
+        branch->Draw(window);
     }
 }
 
@@ -121,11 +130,6 @@ void Tree::UpdateBranches()
             branches[index]->SetSide((Sides)Utils::Range(0, 3));
         }
     }
-}
-
-void Tree::SetCurrentBranch(Sides side)
-{
-    branches[currentBranch]->SetSide(side);
 }
 
 Sides Tree::GetCurrentBranchSide()

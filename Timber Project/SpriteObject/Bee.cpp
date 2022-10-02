@@ -1,7 +1,7 @@
 #include "Bee.h"
 
-Bee::Bee()
-	:MovingObj(*resourceMgr->GetTexture("bee png"))
+Bee::Bee(const Texture& tex)
+	:MovingObj(tex)
 {
 }
 

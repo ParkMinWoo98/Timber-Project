@@ -1,6 +1,8 @@
 #include "Scene.h"
 #include "../Manager/ResourceMgr.h"
 #include "../SpriteObject/Background.h"
+#include "ModeScene.h"
+#include "CharacterScene.h"
 
 Scene::Scene(RenderWindow& window)
 	:window(window), isSceneEnd(false)
@@ -9,6 +11,10 @@ Scene::Scene(RenderWindow& window)
 }
 
 Scene::~Scene()
+{
+}
+
+void Scene::SetCharacterScene(vector<Characters> vec)
 {
 }
 
@@ -29,6 +35,21 @@ void Scene::Update()
 void Scene::Draw(RenderWindow& window)
 {
 	
+}
+
+void Scene::BgmEnd()
+{
+	bgm.stop();
+}
+
+Modes Scene::GetMode() const
+{
+	return Modes::single;
+}
+
+vector<Characters> Scene::GetCharacters()
+{
+	return vector<Characters>();
 }
 
 bool Scene::GetSceneEnd()

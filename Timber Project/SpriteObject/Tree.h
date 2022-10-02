@@ -7,6 +7,7 @@
 
 using namespace std;
 
+enum class KeyModes;
 class Player;
 
 class Tree : public SpriteObj
@@ -19,12 +20,13 @@ protected:
 	list<EffectLog*> unuseLogs;
 	list<EffectLog*> useLogs;
 
+	KeyModes keyMode;
 	Player* playerPtr;
 
 	Tree(const Tree&);
 	Tree& operator=(const Tree&);
 public:
-	Tree(const Vector2f& pos = Vector2f());
+	Tree(const Texture& texTree, KeyModes keyMode, const Vector2f& pos = Vector2f());
 	virtual ~Tree();
 
 	virtual void Init() override;
@@ -34,7 +36,6 @@ public:
 
 	void SetPlayerPtr(Player* ptr);
 	void UpdateBranches();
-	void SetCurrentBranch(Sides side);
 	Sides GetCurrentBranchSide();
 	void ShowLogEffect();
 	void ClearLog();

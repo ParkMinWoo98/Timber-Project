@@ -6,8 +6,8 @@
 StartScene::StartScene(RenderWindow& window)
 	:Scene(window)
 {
-	bgm.setBuffer(*resourceMgr->GetSoundBuffer("start scene start bgm"));
-	background = new Background(*resourceMgr->GetTexture("start scene background"));
+	bgm.setBuffer(*resourceMgr->GetSoundBuffer("sound/game_bgm_start.wav"));
+	background = new Background(*resourceMgr->GetTexture("graphics/background_start.jpg"));
 }
 
 StartScene::~StartScene()
@@ -19,10 +19,12 @@ StartScene::~StartScene()
 
 void StartScene::Init()
 {
+	Scene::Init();
 }
 
 void StartScene::Release()
 {
+	Scene::Release();
 }
 
 void StartScene::Update()

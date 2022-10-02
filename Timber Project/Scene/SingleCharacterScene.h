@@ -1,21 +1,12 @@
 #pragma once
-#include "Scene.h"
+#include "CharacterScene.h"
 
 class Background;
 
-enum class Characters
-{
-	Red,
-	Green,
-	Yellow,
-};
-
-class SingleCharacterScene : public Scene
+class SingleCharacterScene : public CharacterScene
 {
 protected:
-	Characters characters;
 	vector<SpriteObj*> player;
-	Background* background;
 
 	SingleCharacterScene(const SingleCharacterScene&);
 public:

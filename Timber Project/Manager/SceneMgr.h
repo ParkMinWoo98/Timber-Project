@@ -10,10 +10,12 @@ enum class Characters;
 
 enum class Scenes
 {
-	start,
-	mode,
-	character,
-	play,
+	Start,
+	Mode,
+	SingleCharacter,
+	SinglePlay,
+	DuelCharacter,
+	DuelPlay,
 };
 
 class SceneMgr

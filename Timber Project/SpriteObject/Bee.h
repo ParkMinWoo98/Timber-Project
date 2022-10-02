@@ -4,7 +4,7 @@
 class Bee : public MovingObj
 {
 public:
-	Bee();
+	Bee(const Texture& tex);
 	virtual ~Bee();
 	virtual void Init() override;
 };

@@ -6,7 +6,8 @@ SpriteObj& SpriteObj::operator=(const SpriteObj& ref)
 }
 
 SpriteObj::SpriteObj(const Texture& tex, const Vector2f& pos)
-{
+	:resourceMgr(ResourceMgr::GetInstance())
+{	
 	sprite.setTexture(tex);
 	sprite.setPosition(pos);
 }

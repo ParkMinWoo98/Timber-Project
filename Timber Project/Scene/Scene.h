@@ -5,6 +5,8 @@
 #include <list>
 
 class SpriteObj;
+enum class Characters;
+enum class Modes;
 
 using namespace sf;
 using namespace std;
@@ -24,10 +26,16 @@ public:
 	Scene(RenderWindow& window);
 	virtual ~Scene();
 
+	virtual void SetCharacterScene(vector<Characters> vec);
+
 	virtual void Init();
 	virtual void Release();
 	virtual void Update();
 	virtual void Draw(RenderWindow& window);
+
+	void BgmEnd();
+	virtual Modes GetMode() const;
+	virtual vector<Characters> GetCharacters();
 
 	bool GetSceneEnd();
 };

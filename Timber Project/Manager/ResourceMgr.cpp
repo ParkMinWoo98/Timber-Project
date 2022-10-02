@@ -42,7 +42,7 @@ bool ResourceMgr::LoadAll()
 
     for (int i = 0; i < doc.GetRowCount(); ++i)
     {
-        if (Load((ResourceTypes)types[i], ids[i]))
+        if (!Load((ResourceTypes)types[i], ids[i]))
             return false;
     }
     return true;

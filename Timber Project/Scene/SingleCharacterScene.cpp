@@ -8,13 +8,12 @@
 #include "../SpriteObject/Background.h"
 
 SingleCharacterScene::SingleCharacterScene(RenderWindow& window)
-	:Scene(window), characters(Characters::Red)
+	:CharacterScene(window)
 {
-	bgm.setBuffer(*resourceMgr->GetSoundBuffer("char scene start bgm"));
-	background = new Background(*resourceMgr->GetTexture("char scene start background"));
-	player.push_back(new Background(*resourceMgr->GetTexture("char 1"), Vector2f(this->window.getSize().x * 0.25, 500)));
-	player.push_back(new Background(*resourceMgr->GetTexture("char 2"), Vector2f(this->window.getSize().x * 0.25, 500)));
-	player.push_back(new Background(*resourceMgr->GetTexture("char 3"), Vector2f(this->window.getSize().x * 0.25, 500)));
+	player.push_back(new Background(*resourceMgr->GetTexture("graphics/player1.png"), Vector2f(this->window.getSize().x * 0.5, 500)));
+	player.push_back(new Background(*resourceMgr->GetTexture("graphics/player2.png"), Vector2f(this->window.getSize().x * 0.5, 500)));
+	player.push_back(new Background(*resourceMgr->GetTexture("graphics/player3.png"), Vector2f(this->window.getSize().x * 0.5, 500)));
+	characters.push_back(Characters::Red);
 }
 
 SingleCharacterScene::~SingleCharacterScene()
@@ -30,32 +29,34 @@ SingleCharacterScene::~SingleCharacterScene()
 
 void SingleCharacterScene::Init()
 {
+	CharacterScene::Init();
+}
+
+void SingleCharacterScene::Release()
+{
 }
 
 void SingleCharacterScene::Update()
 {
-	if (InputMgr::GetKeyDown(Keyboard::Key::Left) && charaters)
+	if (InputMgr::GetKeyDown(Keyboard::Key::A) && characters[0] != Characters::Red)
 	{
-		buttons[0]->ButtonEffect();
-		buttons[1]->EndEffect();
+		characters[0] = (Characters)((int)characters[0] - 1);
 	}
-	if (InputMgr::GetKeyDown(Keyboard::Key::Right) && mode != Modes::duel)
+	if (InputMgr::GetKeyDown(Keyboard::Key::D) && characters[0] != Characters::Yellow)
 	{
-		buttons[1]->ButtonEffect();
-		buttons[0]->EndEffect();
+		characters[0] = (Characters)((int)characters[0] + 1);
 	}
 	if (InputMgr::GetKeyDown(Keyboard::Key::Return))
-	{
-		buttons[(int)mode]->SelectedSoundEffect();
 		isSceneEnd = true;
-	}
 }
 
 void SingleCharacterScene::Draw(RenderWindow& window)
 {
+	background->Draw(window);
+	player[(int)characters[0]]->Draw(window);
 }
 
-vector<Button*> SingleCharacterScene::GetCharacters()
+vector<Characters> SingleCharacterScene::GetCharacters()
 {
-	return buttons;
+	return characters;
 }

@@ -2,13 +2,13 @@
 #include "Tree.h"
 #include "../Manager/InputMgr.h"
 
-Player::Player(Texture& texPlayer)
+Player::Player(Texture& texPlayer, KeyModes keyMode)
 	:SpriteObj(texPlayer), texPlayer(texPlayer),
-	texRip(*resourceMgr->GetTexture("Rip png")),
+	texRip(*resourceMgr->GetTexture("graphics/rip.png")),
 	treePtr(nullptr), originalPos(2), pos(Sides::Right), isAlive(true), isChopping(false)
 {
 	// axe 생성, 위치
-	axe.setTexture(*resourceMgr->GetTexture("axe png"));
+	axe.setTexture(*resourceMgr->GetTexture("graphics/axe.png"));
 	Utils::SetOrigin(this->axe, Origins::MR);
 	Vector2f size = GetSize();
 	axePos.x = -size.x * 0.4f + 5;
@@ -16,8 +16,8 @@ Player::Player(Texture& texPlayer)
 	SetOrigin(Origins::BC);
 	
 	// sound
-	dieSound.setBuffer(*resourceMgr->GetSoundBuffer("die sound wav"));
-	chopSound.setBuffer(*resourceMgr->GetSoundBuffer("chop sound wav"));
+	dieSound.setBuffer(*resourceMgr->GetSoundBuffer("sound/death.wav"));
+	chopSound.setBuffer(*resourceMgr->GetSoundBuffer("sound/chop.wav"));
 }
 
 Player::~Player()
@@ -31,6 +31,7 @@ void Player::Set()
 
 void Player::Init()
 {
+	Set();
 	isAlive = true;
 	isChopping = false;
 	sprite.setTexture(texPlayer, true);
@@ -54,14 +55,34 @@ void Player::Update(float dt)
 	SpriteObj::Update(dt);
 	if (!isAlive)
 		return;
-	if (InputMgr::GetKeyDown(Keyboard::Key::Left) && !isChopping)
-		Chop(Sides::Left);
-	if (InputMgr::GetKeyDown(Keyboard::Key::Right) && !isChopping)
-		Chop(Sides::Right);
-	if (pos == Sides::Left)
-		isChopping = InputMgr::GetKey(Keyboard::Key::Left);
-	else if (pos == Sides::Right)
-		isChopping = InputMgr::GetKey(Keyboard::Key::Right);
+	switch (keyMode)
+	{
+	case KeyModes::FirstPlayer:
+		{
+			if (InputMgr::GetKeyDown(Keyboard::Key::A) && !isChopping)
+				Chop(Sides::Left);
+			if (InputMgr::GetKeyDown(Keyboard::Key::D) && !isChopping)
+				Chop(Sides::Right);
+			if (pos == Sides::Left)
+				isChopping = InputMgr::GetKey(Keyboard::Key::A);
+			else if (pos == Sides::Right)
+				isChopping = InputMgr::GetKey(Keyboard::Key::D);
+		}
+		break;
+	case KeyModes::SecondPlayer:
+		{
+			if (InputMgr::GetKeyDown(Keyboard::Key::Left) && !isChopping)
+				Chop(Sides::Left);
+			if (InputMgr::GetKeyDown(Keyboard::Key::Right) && !isChopping)
+				Chop(Sides::Right);
+			if (pos == Sides::Left)
+				isChopping = InputMgr::GetKey(Keyboard::Key::Left);
+			else if (pos == Sides::Right)
+				isChopping = InputMgr::GetKey(Keyboard::Key::Right);
+		}
+		break;
+	}
+	
 }
 
 void Player::Draw(RenderWindow& window)
@@ -91,6 +112,11 @@ void Player::SetFlipX(bool flip)
 	Vector2f scale = axe.getScale();
 	scale.x = flip ? -abs(scale.x) : abs(scale.x);
 	axe.setScale(scale);
+}
+
+void Player::SetTexPlayer(Texture& texplayer)
+{
+	texPlayer = texplayer;
 }
 
 void Player::SetTreePtr(Tree* ptr)

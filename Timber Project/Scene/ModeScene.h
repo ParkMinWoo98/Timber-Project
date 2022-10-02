@@ -8,7 +8,6 @@ enum class Modes
 {
 	single,
 	duel,
-	none
 };
 
 class ModeScene : public Scene
@@ -27,6 +26,6 @@ public:
 	virtual void Update();
 	virtual void Draw(RenderWindow& window);
 
-	Modes GetMode() const;
+	virtual Modes GetMode() const;
 };
 

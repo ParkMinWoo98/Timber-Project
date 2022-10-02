@@ -4,7 +4,7 @@
 class Cloud : public MovingObj
 {
 public:
-	Cloud();
+	Cloud(const Texture& tex);
 	virtual ~Cloud();
 
 	virtual void Init() override;

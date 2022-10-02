@@ -3,24 +3,22 @@
 #include "SFML/Audio.hpp"
 #include "../Manager/ResourceMgr.h"
 #include "../SpriteObject/Background.h"
-#include "../SpriteObject/Button.h"
 #include "../Manager/InputMgr.h"
 #include "../SpriteObject/Background.h"
 
 DuelCharacterScene::DuelCharacterScene(RenderWindow& window)
-	:Scene(window)
+	:CharacterScene(window)
 {
-	bgm.setBuffer(*resourceMgr->GetSoundBuffer("char scene start bgm"));
-	background = new Background(*resourceMgr->GetTexture("char scene start background"));
-	player1.push_back(new Background(*resourceMgr->GetTexture("char 1"), Vector2f(this->window.getSize().x * 0.25, 500)));
-	player1.push_back(new Background(*resourceMgr->GetTexture("char 2"), Vector2f(this->window.getSize().x * 0.25, 500)));
-	player1.push_back(new Background(*resourceMgr->GetTexture("char 3"), Vector2f(this->window.getSize().x * 0.25, 500)));
-	player2.push_back(new Background(*resourceMgr->GetTexture("char 1"), Vector2f(this->window.getSize().x * 0.75, 500)));
-	player2.push_back(new Background(*resourceMgr->GetTexture("char 2"), Vector2f(this->window.getSize().x * 0.75, 500)));
-	player2.push_back(new Background(*resourceMgr->GetTexture("char 3"), Vector2f(this->window.getSize().x * 0.75, 500)));
+	player1.push_back(new Background(*resourceMgr->GetTexture("graphics/player1.png"), Vector2f(this->window.getSize().x * 0.2, 500)));
+	player1.push_back(new Background(*resourceMgr->GetTexture("graphics/player2.png"), Vector2f(this->window.getSize().x * 0.2, 500)));
+	player1.push_back(new Background(*resourceMgr->GetTexture("graphics/player3.png"), Vector2f(this->window.getSize().x * 0.2, 500)));
+	player2.push_back(new Background(*resourceMgr->GetTexture("graphics/player1.png"), Vector2f(this->window.getSize().x * 0.75, 500)));
+	player2.push_back(new Background(*resourceMgr->GetTexture("graphics/player2.png"), Vector2f(this->window.getSize().x * 0.75, 500)));
+	player2.push_back(new Background(*resourceMgr->GetTexture("graphics/player3.png"), Vector2f(this->window.getSize().x * 0.75, 500)));
 	for (int i = 0; i < 2; ++i)
 	{
 		characters.push_back(Characters::Red);
+		selected.push_back(false);
 	}
 }
 
@@ -41,34 +39,45 @@ DuelCharacterScene::~DuelCharacterScene()
 
 void DuelCharacterScene::Init()
 {
+	CharacterScene::Init();
+}
+
+void DuelCharacterScene::Release()
+{
 }
 
 void DuelCharacterScene::Update()
 {
-	if (InputMgr::GetKeyDown(Keyboard::Key::A) && characters[0] != Characters::Red)
+	if (!selected[0])
 	{
-		characters[0] = (Characters)((int)characters[0] - 1);
+		if (InputMgr::GetKeyDown(Keyboard::Key::A) && characters[0] != Characters::Red)
+			characters[0] = (Characters)((int)characters[0] - 1);
+		if (InputMgr::GetKeyDown(Keyboard::Key::D) && characters[0] != Characters::Yellow)
+			characters[0] = (Characters)((int)characters[0] + 1);
+		if (InputMgr::GetKeyDown(Keyboard::Key::Space))
+			selected[0] = true;
 	}
-	if (InputMgr::GetKeyDown(Keyboard::Key::D) && characters[0] != Characters::Yellow)
+	if (!selected[1])
 	{
-		characters[0] = (Characters)((int)characters[0] + 1);
+		if (InputMgr::GetKeyDown(Keyboard::Key::Left) && characters[1] != Characters::Red)
+			characters[1] = (Characters)((int)characters[1] - 1);
+		if (InputMgr::GetKeyDown(Keyboard::Key::Right) && characters[1] != Characters::Yellow)
+			characters[1] = (Characters)((int)characters[1] + 1);
+		if (InputMgr::GetKeyDown(Keyboard::Key::Return))
+			selected[1] = true;
 	}
-	if (InputMgr::GetKeyDown(Keyboard::Key::Left) && characters[1] != Characters::Red)
-	{
-		characters[1] = (Characters)((int)characters[1] - 1);
-	}
-	if (InputMgr::GetKeyDown(Keyboard::Key::Right) && characters[1] != Characters::Yellow)
-	{
-		characters[1] = (Characters)((int)characters[1] + 1);
-	}
+	if (selected[0] && selected[1])
+		isSceneEnd = true;
 }
 
 void DuelCharacterScene::Draw(RenderWindow& window)
 {
-	
+	background->Draw(window);
+	player1[(int)characters[0]]->Draw(window);
+	player2[(int)characters[1]]->Draw(window);
 }
 
-vector<Button*> DuelCharacterScene::GetCharacters()
+vector<Characters> DuelCharacterScene::GetCharacters()
 {
-	return buttons;
+	return characters;
 }

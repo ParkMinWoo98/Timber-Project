@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClCompile Include="Scene\DuelCharacterScene.cpp" />
     <ClCompile Include="Scene\DuelPlayScene.cpp" />
+    <ClCompile Include="Scene\PlayScene.cpp" />
     <ClCompile Include="Scene\SinglePlayScene.cpp" />
     <ClCompile Include="Scene\SingleCharacterScene.cpp" />
     <ClCompile Include="SpriteObject\Button.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="3rd\SingleTon.h" />
     <ClInclude Include="Scene\DuelCharacterScene.h" />
     <ClInclude Include="Scene\DuelPlayScene.h" />
+    <ClInclude Include="Scene\PlayScene.h" />
     <ClInclude Include="Scene\SinglePlayScene.h" />
     <ClInclude Include="Scene\SingleCharacterScene.h" />
     <ClInclude Include="SpriteObject\Button.h" />

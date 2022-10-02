@@ -1,22 +1,15 @@
 #pragma once
-#include "Scene.h"
+#include "CharacterScene.h"
 
 class Background;
 
-enum class Characters
-{
-	Red,
-	Green,
-	Yellow,
-};
-
-class DuelCharacterScene : public Scene
+class DuelCharacterScene : public CharacterScene
 {
 protected:
-	vector<Characters> characters;
 	vector<SpriteObj*> player1;
 	vector<SpriteObj*> player2;
-	Background* background;
+
+	vector<bool> selected;
 
 	DuelCharacterScene(const DuelCharacterScene&);
 public:

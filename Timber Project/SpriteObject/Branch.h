@@ -15,7 +15,7 @@ protected:
     Sprite& treeBody;
     Sides side;
 public:
-    Branch(Sprite& treeBody);
+    Branch(const Texture& tex, Sprite& treeBody);
     virtual ~Branch();
 
     virtual void Init() override;
