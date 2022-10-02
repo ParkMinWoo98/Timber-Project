@@ -13,7 +13,7 @@
 #include "PlayScene.h"
 
 PlayScene::PlayScene(RenderWindow& window, Time& dt)
-	:Scene(window), dt(dt), isPause(false), duration(0), timer(0)
+	:Scene(window), dt(dt), isPause(false), duration(4.0f)
 {
 	bgm.setBuffer(*resourceMgr->GetSoundBuffer("sound/game_bgm_play.wav"));
 	objList.push_back(new Background(*resourceMgr->GetTexture("graphics/background_play.png")));
@@ -22,7 +22,6 @@ PlayScene::PlayScene(RenderWindow& window, Time& dt)
 		objList.push_back(new Cloud(*resourceMgr->GetTexture("graphics/cloud.png")));
 		objList.push_back(new Bee(*resourceMgr->GetTexture("graphics/bee.png")));
 	}
-	timeOutSound.setBuffer(*resourceMgr->GetSoundBuffer("sound/out_of_time.wav"));
 }
 
 PlayScene::~PlayScene()
@@ -53,13 +52,12 @@ void PlayScene::Init()
 	for (int i = 0; i < player.size(); ++i)
 	{
 		player[i]->SetTexPlayer(GetCharacterTex(characters[i]));
+		player[i]->SetTimer(duration);
 	}
 	for (auto obj : objList)
 	{
 		obj->Init();
 	}
-	duration = 4.0f;
-	timer = duration;
 }
 
 void PlayScene::Release()
@@ -70,35 +68,24 @@ void PlayScene::Update()
 {
 	if (InputMgr::GetKeyDown(Keyboard::Key::Return))
 	{
-		if (timer > 0.f && isAllAlive())
+		if (isAllAlive())
 			isPause = !isPause;
 		else
 		{
-			for (auto& go : objList)
-				go->Init();
-			for (auto t : tree)
-			{
-				// ui에서 score초기화
-				timer = duration;
-				//messageText.setString("Press Enter to start!");
-				// Utils::SetOrigin(messageText, Origins::MC);
-				isPause = false;
-			}
+			Init();
+			isPause = false;
 		}
 	}
 	float deltaTime = isPause ? 0.f : dt.asSeconds();
-	std::cout << deltaTime << std::endl;
-	timer -= deltaTime;
-	if (timer < 0.f || !isAllAlive())
+	if (!isAllAlive())
 	{
-		if (!isPause && timer < 0.f)
+		for (auto p : player)
 		{
-			timeOutSound.play();
-			timer = 0.f;
-			isPause = true;
-			/*messageText.setString("Game Over!!");
-			Utils::SetOrigin(messageText, Origins::MC);*/
+			p->SetTimer(0.f);
 		}
+		isPause = true;
+		/*messageText.setString("Game Over!!");
+		Utils::SetOrigin(messageText, Origins::MC);*/
 	}
 	// 타임바, 스코어텍스트
 
@@ -107,13 +94,6 @@ void PlayScene::Update()
 		for (auto obj : objList)
 		{
 			obj->Update(deltaTime);
-		}
-	}
-	if (isAllAlive())
-	{
-		for (auto p : player)
-		{
-			p->CheckDeath();
 		}
 	}
 }
@@ -140,7 +120,7 @@ bool PlayScene::isAllAlive() const
 {
 	for (auto p : player)
 	{
-		if (!p->GetAlive())
+		if (p->TimeOut() || !p->GetAlive())
 			return false;
 	}
 	return true;

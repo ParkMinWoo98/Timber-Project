@@ -4,8 +4,8 @@
 
 Player::Player(Texture& texPlayer, KeyModes keyMode)
 	:SpriteObj(texPlayer), texPlayer(texPlayer),
-	texRip(*resourceMgr->GetTexture("graphics/rip.png")),
-	treePtr(nullptr), originalPos(2), pos(Sides::Right), isAlive(true), isChopping(false)
+	texRip(*resourceMgr->GetTexture("graphics/rip.png")), keyMode(keyMode),
+	treePtr(nullptr), score(0), timer(0.f), originalPos(2), pos(Sides::Right), isAlive(true), isChopping(false)
 {
 	// axe 생성, 위치
 	axe.setTexture(*resourceMgr->GetTexture("graphics/axe.png"));
@@ -18,6 +18,7 @@ Player::Player(Texture& texPlayer, KeyModes keyMode)
 	// sound
 	dieSound.setBuffer(*resourceMgr->GetSoundBuffer("sound/death.wav"));
 	chopSound.setBuffer(*resourceMgr->GetSoundBuffer("sound/chop.wav"));
+	timeOutSound.setBuffer(*resourceMgr->GetSoundBuffer("sound/out_of_time.wav"));
 }
 
 Player::~Player()
@@ -32,6 +33,7 @@ void Player::Set()
 void Player::Init()
 {
 	Set();
+	score = 0;
 	isAlive = true;
 	isChopping = false;
 	sprite.setTexture(texPlayer, true);
@@ -55,6 +57,7 @@ void Player::Update(float dt)
 	SpriteObj::Update(dt);
 	if (!isAlive)
 		return;
+	timer -= dt;
 	switch (keyMode)
 	{
 	case KeyModes::FirstPlayer:
@@ -82,7 +85,10 @@ void Player::Update(float dt)
 		}
 		break;
 	}
-	
+	if (CheckDeath())
+	{
+		
+	}
 }
 
 void Player::Draw(RenderWindow& window)
@@ -114,6 +120,11 @@ void Player::SetFlipX(bool flip)
 	axe.setScale(scale);
 }
 
+void Player::SetTimer(float duration)
+{
+	timer = duration;
+}
+
 void Player::SetTexPlayer(Texture& texplayer)
 {
 	texPlayer = texplayer;
@@ -129,15 +140,25 @@ bool Player::GetAlive() const
 	return isAlive;
 }
 
+bool Player::TimeOut() const
+{
+	return timer == 0;
+}
+
 Sides Player::GetPos() const
 {
 	return pos;
 }
 
-void Player::CheckDeath()
+bool Player::CheckDeath()
 {
-	if (pos == treePtr->GetCurrentBranchSide())
+	if (isAlive && (timer < 0.f || pos == treePtr->GetCurrentBranchSide()))
 	{
+		if (timer < 0.f)
+			timeOutSound.play();
+		else
+			dieSound.play();
+		timer = 0.f;
 		isAlive = false;
 		isChopping = false;
 
@@ -145,8 +166,10 @@ void Player::CheckDeath()
 		sprite.setTexture(texRip, true);
 		Utils::SetOrigin(sprite, Origins::BC);
 		SpriteObj::SetFlipX(false);
-		dieSound.play();
+		if(pos == treePtr->GetCurrentBranchSide())
+		return true;
 	}
+	return false;
 }
 
 void Player::Chop(Sides side)
@@ -155,6 +178,8 @@ void Player::Chop(Sides side)
 	SetFlipX(pos == Sides::Left);
 	SetPosition(originalPos[(int)pos]);
 	chopSound.play();
-
+	score += 10;
+	timer += 0.2f;
+	treePtr->UpdateBranches();
 	treePtr->ShowLogEffect();
 }

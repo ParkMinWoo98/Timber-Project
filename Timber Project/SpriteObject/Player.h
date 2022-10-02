@@ -24,12 +24,16 @@ protected:
 
 	KeyModes keyMode;
 
+	int score;
+	float timer;
+
 	Sprite axe;
 	Vector2f axePos;
 	bool isChopping;
 
 	Sound dieSound;
 	Sound chopSound;
+	Sound timeOutSound;
 
 	Tree* treePtr;
 public:
@@ -45,13 +49,16 @@ public:
 	virtual void SetPosition(Vector2f pos);
 	virtual void SetFlipX(bool flip);
 
+	void SetTimer(float duration);
+
 	void SetTexPlayer(Texture& texplayer);
 	void SetTreePtr(Tree* ptr);
 
 	bool GetAlive() const;
+	bool TimeOut() const;
 	Sides GetPos() const;
 
-	void CheckDeath();
+	bool CheckDeath();
 	void Chop(Sides side);
 };
 

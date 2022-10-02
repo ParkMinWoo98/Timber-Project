@@ -18,11 +18,8 @@ protected:
 	vector<Tree*> tree;
 
 	Time& dt;
-	float timer;
 	float duration;
 	bool isPause;
-
-	Sound timeOutSound;
 
 	PlayScene(const PlayScene&);
 	PlayScene& operator=(const PlayScene&);

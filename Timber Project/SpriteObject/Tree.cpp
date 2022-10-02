@@ -70,19 +70,7 @@ void Tree::Release()
 void Tree::Update(float dt)
 {
     if (!playerPtr->GetAlive())
-        return;
-    switch (keyMode)
-    {
-    case KeyModes::FirstPlayer:
-        if (InputMgr::GetKeyDown(Keyboard::Key::A) || InputMgr::GetKeyDown(Keyboard::Key::D))
-            UpdateBranches(); // branch 하강
-        break;
-    case KeyModes::SecondPlayer:
-        if (InputMgr::GetKeyDown(Keyboard::Key::Left) || InputMgr::GetKeyDown(Keyboard::Key::Right))
-            UpdateBranches(); // branch 하강
-        break;
-    }
-   
+        return;   
     // log 시간 지났으면 삭제
     auto it = useLogs.begin();
     while (it != useLogs.end())

@@ -47,7 +47,7 @@ void SceneMgr::Update()
 		{
 			currentScene = (Scenes)((int)currentScene + 1);
 		}
-		if(currentScene == Scenes::SinglePlay || currentScene == Scenes::DuelPlay)
+		if (currentScene == Scenes::SinglePlay || currentScene == Scenes::DuelPlay)
 			sceneList[(int)currentScene]->SetCharacterScene(sceneList[(int)currentScene - 1]->GetCharacters());
 		sceneList[(int)currentScene]->Init();
 	}
