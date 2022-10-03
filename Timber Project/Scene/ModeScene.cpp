@@ -29,8 +29,12 @@ ModeScene::~ModeScene()
 void ModeScene::Init()
 {
 	Scene::Init();
-	mode = Modes::single;
+	for (auto button : buttons)
+	{
+		button->Init();
+	}
 	buttons[0]->ButtonEffect();
+	mode = Modes::single;
 }
 
 void ModeScene::Release()
@@ -47,8 +51,8 @@ void ModeScene::Update()
 	}
 	if ((InputMgr::GetKeyDown(Keyboard::Key::Right) || InputMgr::GetKeyDown(Keyboard::Key::D)) && mode == Modes::single)
 	{
-		buttons[1]->ButtonEffect();
 		buttons[0]->EndEffect();
+		buttons[1]->ButtonEffect();
 		mode = Modes::duel;
 	}
 	if (InputMgr::GetKeyDown(Keyboard::Key::Return))

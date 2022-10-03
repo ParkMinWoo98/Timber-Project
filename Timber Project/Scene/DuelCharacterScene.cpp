@@ -47,6 +47,10 @@ DuelCharacterScene::~DuelCharacterScene()
 void DuelCharacterScene::Init()
 {
 	CharacterScene::Init();
+	for (auto s : selected)
+	{
+		s = false;
+	}
 }
 
 void DuelCharacterScene::Release()

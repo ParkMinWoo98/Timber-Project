@@ -36,7 +36,6 @@ void StartScene::Update()
 {
 	if (InputMgr::GetKeyDown(Keyboard::Key::Return))
 	{
-		button->ButtonEffect();
 		isSceneEnd = true;
 	}
 }

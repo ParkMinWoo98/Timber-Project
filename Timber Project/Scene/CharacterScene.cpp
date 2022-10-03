@@ -23,7 +23,7 @@ CharacterScene::~CharacterScene()
 void CharacterScene::Init()
 {
 	Scene::Init();
-	for (auto character : characters)
+	for (auto& character : characters)
 	{
 		character = Characters::Red;
 	}

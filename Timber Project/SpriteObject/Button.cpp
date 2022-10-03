@@ -5,6 +5,7 @@
 Button::Button(const Texture& tex, const Vector2f& pos)
 	:SpriteObj(tex, pos)
 {
+	initSize = sprite.getScale();
 	movingSound.setBuffer(*resourceMgr->GetSoundBuffer("sound/game_move_button.wav"));
 	selectedSound.setBuffer(*resourceMgr->GetSoundBuffer("sound/game_click_button.wav"));
 	Utils::SetOrigin(sprite, Origins::MC);
@@ -14,15 +15,20 @@ Button::~Button()
 {
 }
 
+void Button::Init()
+{
+	EndEffect();
+}
+
 void Button::ButtonEffect()
 {
-	sprite.scale(1.2, 1.2);
+	sprite.setScale(initSize * 1.2f);
 	movingSound.play();
 }
 
 void Button::EndEffect()
 {
-	sprite.scale(0.833, 0.833);
+	sprite.setScale(initSize);
 }
 
 void Button::SelectedSoundEffect()
