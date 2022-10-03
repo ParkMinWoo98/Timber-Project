@@ -70,7 +70,7 @@ void Tree::Release()
 void Tree::Update(float dt)
 {
     if (!playerPtr->GetAlive())
-        return;   
+        return;
     // log 시간 지났으면 삭제
     auto it = useLogs.begin();
     while (it != useLogs.end())

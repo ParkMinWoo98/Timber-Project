@@ -26,10 +26,11 @@ DuelPlayScene::DuelPlayScene(RenderWindow& window, Time& dt)
 		objList.push_back(tree[i]);
 		objList.push_back(player[i]);
 	}
-	scoreTexts.push_back(new ScoreTextUI(*resourceMgr->GetFont("fonts/KOMIKAP_.ttf"), 100));
-	scoreTexts.push_back(new ScoreTextUI(*resourceMgr->GetFont("fonts/KOMIKAP_.ttf"), 100));
-	timebars.push_back(new TimebarUI());
-	timebars.push_back(new TimebarUI());
+	for (int i = 0; i < 2; ++i)
+	{
+		scoreTexts.push_back(new ScoreTextUI(*resourceMgr->GetFont("fonts/KOMIKAP_.ttf"), 100));
+		timebars.push_back(new TimebarUI());
+	}
 	Vector2u size = window.getSize();
 	for (int i = 0; i < 2; ++i)
 	{
