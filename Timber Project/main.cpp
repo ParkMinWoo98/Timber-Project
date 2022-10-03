@@ -22,7 +22,7 @@ int main()
         {
             InputMgr::UpdateInput(ev);
         }
-        if (Keyboard::isKeyPressed(Keyboard::Escape))
+        if (InputMgr::GetKeyDown(Keyboard::Key::Escape) && sceneMgr.GetCurrentScene() == Scenes::Start)
         {
             window.close();
             continue;

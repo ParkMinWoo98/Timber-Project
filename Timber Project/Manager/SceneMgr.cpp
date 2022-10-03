@@ -1,4 +1,5 @@
 #include "SceneMgr.h"
+#include "InputMgr.h"
 #include "../Scene/StartScene.h"
 #include "../Scene/ModeScene.h"
 #include "../Scene/SingleCharacterScene.h"
@@ -23,7 +24,8 @@ SceneMgr::~SceneMgr()
 
 void SceneMgr::Init()
 {
-	sceneList[0]->Init();
+	currentScene = Scenes::Start;
+	sceneList[(int)currentScene]->Init();
 }
 
 void SceneMgr::Release()
@@ -35,6 +37,7 @@ void SceneMgr::Update()
 	sceneList[(int)currentScene]->Update();
 	if (sceneList[(int)currentScene]->GetSceneEnd())
 	{
+		sceneList[(int)currentScene]->SetSceneEnd(false);
 		sceneList[(int)currentScene]->BgmEnd();
 		if (currentScene == Scenes::Mode)
 		{
@@ -51,9 +54,19 @@ void SceneMgr::Update()
 			sceneList[(int)currentScene]->SetCharacterScene(sceneList[(int)currentScene - 1]->GetCharacters());
 		sceneList[(int)currentScene]->Init();
 	}
+	if (InputMgr::GetKeyDown(Keyboard::Key::Escape))
+	{
+		sceneList[(int)currentScene]->BgmEnd();
+		Init();
+	}
 }
 
 void SceneMgr::Draw(RenderWindow& window)
 {
 	sceneList[(int)currentScene]->Draw(window);
+}
+
+Scenes SceneMgr::GetCurrentScene() const
+{
+	return currentScene;
 }

@@ -37,6 +37,7 @@ public:
 	virtual Modes GetMode() const;
 	virtual vector<Characters> GetCharacters();
 
+	void SetSceneEnd(bool isSceneEnd);
 	bool GetSceneEnd();
 };
 

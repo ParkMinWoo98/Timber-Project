@@ -52,6 +52,11 @@ vector<Characters> Scene::GetCharacters()
 	return vector<Characters>();
 }
 
+void Scene::SetSceneEnd(bool isSceneEnd)
+{
+	this->isSceneEnd = isSceneEnd;
+}
+
 bool Scene::GetSceneEnd()
 {
 	return isSceneEnd;

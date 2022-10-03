@@ -33,5 +33,7 @@ public:
 	void Release();
 	void Update();
 	void Draw(RenderWindow& window);
+
+	Scenes GetCurrentScene() const;
 };
 
