@@ -4,7 +4,6 @@
 #include "../Manager/ResourceMgr.h"
 #include <list>
 
-class SpriteObj;
 enum class Characters;
 enum class Modes;
 

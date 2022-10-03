@@ -4,6 +4,7 @@
 #include <vector>
 
 enum class Characters;
+class SpriteObj;
 class Player;
 class Tree;
 class UI;

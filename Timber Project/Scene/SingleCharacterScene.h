@@ -1,14 +1,13 @@
 #pragma once
 #include "CharacterScene.h"
 
-class SpriteObj;
-
 class SingleCharacterScene : public CharacterScene
 {
 protected:
 	vector<SpriteObj*> player;
 
 	SingleCharacterScene(const SingleCharacterScene&);
+	SingleCharacterScene& operator=(const SingleCharacterScene&);
 public:
 	SingleCharacterScene(RenderWindow& window);
 	virtual ~SingleCharacterScene();

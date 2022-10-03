@@ -1,8 +1,6 @@
 #pragma once
 #include "CharacterScene.h"
 
-class Background;
-
 class DuelCharacterScene : public CharacterScene
 {
 protected:
@@ -12,6 +10,7 @@ protected:
 	vector<bool> selected;
 
 	DuelCharacterScene(const DuelCharacterScene&);
+	DuelCharacterScene& operator=(const DuelCharacterScene&);
 public:
 	DuelCharacterScene(RenderWindow& window);
 	virtual ~DuelCharacterScene();

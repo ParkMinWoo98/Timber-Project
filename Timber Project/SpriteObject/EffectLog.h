@@ -9,6 +9,9 @@ protected:
 	float duration;
 	float timer;
 	bool active;
+
+	EffectLog(const EffectLog&);
+	EffectLog& operator=(const EffectLog&);
 public:
 	static const Vector2f Gravity;
 

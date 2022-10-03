@@ -17,6 +17,8 @@ protected:
 	SpriteObj* background;
 	vector<Button*> buttons;
 
+	ModeScene(const ModeScene&);
+	ModeScene& operator=(const ModeScene&);
 public:
 	ModeScene(RenderWindow& window);
 	virtual ~ModeScene();

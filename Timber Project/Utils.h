@@ -25,6 +25,8 @@ private:
 	static random_device rd;
 	static mt19937 gen;
 
+	Utils(const Utils&);
+	Utils& operator=(const Utils&);
 public:
 	static void SetOrigin(Text& obj, Origins origin);
 	static void SetOrigin(Sprite& obj, Origins origin);

@@ -3,12 +3,6 @@
 #include <Windows.h>
 #include <vector>
 
-class CharacterScene;
-enum class Characters;
-
-class Player;
-class Tree;
-
 class SinglePlayScene : public PlayScene
 {
 protected:

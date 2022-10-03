@@ -14,6 +14,9 @@ class Branch : public SpriteObj
 protected:
     Sprite& treeBody;
     Sides side;
+
+    Branch(const Branch&);
+    Branch& operator=(const Branch&);
 public:
     Branch(const Texture& tex, Sprite& treeBody);
     virtual ~Branch();

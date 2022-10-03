@@ -17,6 +17,7 @@ protected:
 	SpriteObj* background;
 
 	CharacterScene(const CharacterScene&);
+	CharacterScene& operator=(const CharacterScene&);
 public:
 	CharacterScene(RenderWindow& window);
 	virtual ~CharacterScene();

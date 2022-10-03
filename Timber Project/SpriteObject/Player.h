@@ -41,6 +41,9 @@ protected:
 	Sound timeOutSound;
 
 	Tree* treePtr;
+
+	Player(const Player&);
+	Player& operator=(const Player&);
 public:
 	Player(Texture& texPlayer, KeyModes keyMode = KeyModes::FirstPlayer);
 	virtual ~Player();
