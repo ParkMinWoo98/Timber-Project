@@ -2,17 +2,16 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
 #include "../Manager/ResourceMgr.h"
-#include "../SpriteObject/Background.h"
+#include "../SpriteObject/SpriteObj.h"
 #include "../SpriteObject/Button.h"
 #include "../Manager/InputMgr.h"
-#include "../SpriteObject/Background.h"
 
 SingleCharacterScene::SingleCharacterScene(RenderWindow& window)
 	:CharacterScene(window)
 {
-	player.push_back(new Background(*resourceMgr->GetTexture("graphics/player1.png"), Vector2f(this->window.getSize().x * 0.5, 500)));
-	player.push_back(new Background(*resourceMgr->GetTexture("graphics/player2.png"), Vector2f(this->window.getSize().x * 0.5, 500)));
-	player.push_back(new Background(*resourceMgr->GetTexture("graphics/player3.png"), Vector2f(this->window.getSize().x * 0.5, 500)));
+	player.push_back(new SpriteObj(*resourceMgr->GetTexture("graphics/player1.png"), Vector2f(this->window.getSize().x * 0.5, 500)));
+	player.push_back(new SpriteObj(*resourceMgr->GetTexture("graphics/player2.png"), Vector2f(this->window.getSize().x * 0.5, 500)));
+	player.push_back(new SpriteObj(*resourceMgr->GetTexture("graphics/player3.png"), Vector2f(this->window.getSize().x * 0.5, 500)));
 	characters.push_back(Characters::Red);
 }
 

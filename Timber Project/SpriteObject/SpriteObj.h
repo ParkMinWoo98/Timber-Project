@@ -20,8 +20,8 @@ public:
 	virtual ~SpriteObj();
 
 	virtual void Init() {}
-	virtual void Release() {};
-	virtual void Update(float dt) {};
+	virtual void Release() {}
+	virtual void Update(float dt) {}
 	virtual void Draw(RenderWindow& window);
 
 	void SetOrigin(Origins origin);

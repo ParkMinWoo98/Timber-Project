@@ -51,9 +51,6 @@
     <ClCompile Include="UI\TimebarUI.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteObject\Background.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="SpriteObject\Tree.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -96,6 +93,9 @@
     <ClCompile Include="Scene\PlayScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="UI\ScoreTextUI.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Manager\SceneMgr.h">
@@ -129,9 +129,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="UI\TimebarUI.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteObject\Background.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="SpriteObject\Tree.h">
@@ -180,6 +177,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Scene\PlayScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\ScoreTextUI.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

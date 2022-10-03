@@ -30,6 +30,7 @@ protected:
 
 	int score;
 	float timer;
+	float duration;
 
 	Sprite axe;
 	Vector2f axePos;
@@ -53,7 +54,10 @@ public:
 	virtual void SetPosition(Vector2f pos);
 	virtual void SetFlipX(bool flip);
 
-	void SetTimer(float duration);
+	void SetDuration(float duration);
+	void SetTimer(float timer);
+	float GetDuration() const;
+	float GetTimer() const;
 
 	void SetTexPlayer(Texture& texplayer);
 	void SetTreePtr(Tree* ptr);
@@ -64,5 +68,6 @@ public:
 
 	bool CheckDeath();
 	void Chop(Sides side);
+	int GetScore() const;
 };
 

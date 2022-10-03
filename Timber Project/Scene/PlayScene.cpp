@@ -2,7 +2,7 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
 #include "../Manager/ResourceMgr.h"
-#include "../SpriteObject/Background.h"
+#include "../SpriteObject/SpriteObj.h"
 #include "../SpriteObject/Bee.h"
 #include "../SpriteObject/Cloud.h"
 #include "../SpriteObject/Tree.h"
@@ -11,17 +11,22 @@
 #include "../Scene/CharacterScene.h"
 #include "../Manager/InputMgr.h"
 #include "PlayScene.h"
+#include "../UI/TextUI.h"
 
 PlayScene::PlayScene(RenderWindow& window, Time& dt)
-	:Scene(window), dt(dt), isPause(false), duration(4.0f)
+	:Scene(window), dt(dt), isPause(false)
 {
 	bgm.setBuffer(*resourceMgr->GetSoundBuffer("sound/game_bgm_play.wav"));
-	objList.push_back(new Background(*resourceMgr->GetTexture("graphics/background_play.png")));
+	objList.push_back(new SpriteObj(*resourceMgr->GetTexture("graphics/background_play.png")));
 	for (int i = 0; i < 3; ++i)
 	{
 		objList.push_back(new Cloud(*resourceMgr->GetTexture("graphics/cloud.png")));
 		objList.push_back(new Bee(*resourceMgr->GetTexture("graphics/bee.png")));
 	}
+	messageText = new TextUI(*resourceMgr->GetFont("fonts/KOMIKAP_.ttf"), 75);
+	messageText->SetPosition(Vector2f(window.getSize().x * 0.5, window.getSize().y * 0.5));
+	messageText->SetOrigin(Origins::MC);
+	messageText->SetInitString("Press Enter to start!");
 }
 
 PlayScene::~PlayScene()
@@ -49,14 +54,18 @@ Texture& PlayScene::GetCharacterTex(Characters character)
 void PlayScene::Init()
 {
 	Scene::Init();
+	messageText->Init();
 	for (int i = 0; i < player.size(); ++i)
 	{
 		player[i]->SetTexPlayer(GetCharacterTex(characters[i]));
-		player[i]->SetTimer(duration);
 	}
 	for (auto obj : objList)
 	{
 		obj->Init();
+	}
+	for (auto UI : UIList)
+	{
+		UI->Init();
 	}
 }
 
@@ -69,7 +78,9 @@ void PlayScene::Update()
 	if (InputMgr::GetKeyDown(Keyboard::Key::Return))
 	{
 		if (isAllAlive())
+		{
 			isPause = !isPause;
+		}
 		else
 		{
 			Init();
@@ -84,8 +95,7 @@ void PlayScene::Update()
 			p->SetTimer(0.f);
 		}
 		isPause = true;
-		/*messageText.setString("Game Over!!");
-		Utils::SetOrigin(messageText, Origins::MC);*/
+		messageText->SetString("Game Over!!\nPress Enter to start!");
 	}
 	// 타임바, 스코어텍스트
 
@@ -94,6 +104,10 @@ void PlayScene::Update()
 		for (auto obj : objList)
 		{
 			obj->Update(deltaTime);
+		}
+		for (auto UI : UIList)
+		{
+			UI->Update(deltaTime);
 		}
 	}
 }
@@ -104,16 +118,14 @@ void PlayScene::Draw(RenderWindow& window)
 	{
 		obj->Draw(window);
 	}
+	for (auto UI : UIList)
+	{
+		UI->Draw(window);
+	}
 	if (isPause)
 	{
-		// 메시지
+		messageText->Draw(window);
 	}
-	// 메시지 제외 ui 출력
-}
-
-void PlayScene::SetTimer(float duration)
-{
-	this->duration = duration;
 }
 
 bool PlayScene::isAllAlive() const

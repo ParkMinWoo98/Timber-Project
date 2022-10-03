@@ -1,7 +1,7 @@
 #pragma once
 #include "Scene.h"
 
-class Background;
+class SpriteObj;
 class Button;
 
 enum class Modes
@@ -14,7 +14,7 @@ class ModeScene : public Scene
 {
 protected:
 	Modes mode;
-	Background* background;
+	SpriteObj* background;
 	vector<Button*> buttons;
 
 public:

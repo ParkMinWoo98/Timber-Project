@@ -1,7 +1,7 @@
 #pragma once
 #include "CharacterScene.h"
 
-class Background;
+class SpriteObj;
 
 class SingleCharacterScene : public CharacterScene
 {

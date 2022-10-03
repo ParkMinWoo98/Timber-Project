@@ -1,7 +1,7 @@
 #pragma once
 #include "Scene.h"
 
-class Background;
+class SpriteObj;
 
 enum class Characters
 {
@@ -14,7 +14,7 @@ class CharacterScene : public Scene
 {
 protected:
 	vector<Characters> characters;
-	Background* background;
+	SpriteObj* background;
 
 	CharacterScene(const CharacterScene&);
 public:

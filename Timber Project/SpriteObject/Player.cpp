@@ -5,7 +5,7 @@
 Player::Player(Texture& texPlayer, KeyModes keyMode)
 	:SpriteObj(texPlayer), texPlayer(texPlayer),
 	texRip(*resourceMgr->GetTexture("graphics/rip.png")), keyMode(keyMode),
-	treePtr(nullptr), score(0), timer(0.f), originalPos(2), pos(Sides::Right), isAlive(true), isChopping(false)
+	treePtr(nullptr), score(0), timer(0.f), duration(4.0f), originalPos(2), pos(Sides::Right), isAlive(true), isChopping(false)
 {
 	// axe 생성, 위치
 	axe.setTexture(*resourceMgr->GetTexture("graphics/axe.png"));
@@ -36,6 +36,7 @@ void Player::Init()
 	score = 0;
 	isAlive = true;
 	isChopping = false;
+	timer = duration;
 	sprite.setTexture(texPlayer, true);
 	Utils::SetOrigin(sprite, Origins::BC);
 	SpriteObj::SetFlipX(pos == Sides::Left);
@@ -87,7 +88,7 @@ void Player::Update(float dt)
 	}
 	if (CheckDeath())
 	{
-		
+		score -= 10;
 	}
 }
 
@@ -120,9 +121,24 @@ void Player::SetFlipX(bool flip)
 	axe.setScale(scale);
 }
 
-void Player::SetTimer(float duration)
+void Player::SetDuration(float duration)
 {
-	timer = duration;
+	this->duration = duration;
+}
+
+void Player::SetTimer(float timer)
+{
+	this->timer = timer;
+}
+
+float Player::GetDuration() const
+{
+	return duration;
+}
+
+float Player::GetTimer() const
+{
+	return timer;
 }
 
 void Player::SetTexPlayer(Texture& texplayer)
@@ -182,4 +198,9 @@ void Player::Chop(Sides side)
 	timer += 0.2f;
 	treePtr->UpdateBranches();
 	treePtr->ShowLogEffect();
+}
+
+int Player::GetScore() const
+{
+	return score;
 }

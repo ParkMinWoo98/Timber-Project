@@ -1,13 +1,13 @@
 #include "StartScene.h"
 #include "../Manager/ResourceMgr.h"
-#include "../SpriteObject/Background.h"
+#include "../SpriteObject/SpriteObj.h"
 #include "../Manager/InputMgr.h"
 
 StartScene::StartScene(RenderWindow& window)
 	:Scene(window)
 {
 	bgm.setBuffer(*resourceMgr->GetSoundBuffer("sound/game_bgm_start.wav"));
-	background = new Background(*resourceMgr->GetTexture("graphics/background_start.jpg"));
+	background = new SpriteObj(*resourceMgr->GetTexture("graphics/background_start.jpg"));
 }
 
 StartScene::~StartScene()

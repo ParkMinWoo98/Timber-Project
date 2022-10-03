@@ -1,12 +1,12 @@
 #pragma once
 #include "Scene.h"
 
-class Background;
+class SpriteObj;
 
 class StartScene : public Scene
 {
 protected:
-	Background* background;
+	SpriteObj* background;
 
 	StartScene(const StartScene&);
 	StartScene& operator=(const StartScene&);

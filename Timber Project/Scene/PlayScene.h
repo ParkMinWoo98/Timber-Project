@@ -4,21 +4,27 @@
 #include <vector>
 
 enum class Characters;
-
 class Player;
 class Tree;
+class UI;
+class TextUI;
+class ScoreTextUI;
+class TimebarUI;
 
 class PlayScene : public Scene
 {
 protected:
 	list<SpriteObj*> objList;
+	list<UI*> UIList;
 	vector<Characters> characters;
 
 	vector<Player*> player;
 	vector<Tree*> tree;
+	TextUI* messageText;
+	vector<ScoreTextUI*> scoreTexts;
+	vector<TimebarUI*> timebars;
 
 	Time& dt;
-	float duration;
 	bool isPause;
 
 	PlayScene(const PlayScene&);
@@ -35,6 +41,5 @@ public:
 	virtual void Update();
 	virtual void Draw(RenderWindow& window);
 
-	void SetTimer(float duration);
 	bool isAllAlive() const;
 };

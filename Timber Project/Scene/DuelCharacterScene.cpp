@@ -2,19 +2,18 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
 #include "../Manager/ResourceMgr.h"
-#include "../SpriteObject/Background.h"
+#include "../SpriteObject/SpriteObj.h"
 #include "../Manager/InputMgr.h"
-#include "../SpriteObject/Background.h"
 
 DuelCharacterScene::DuelCharacterScene(RenderWindow& window)
 	:CharacterScene(window)
 {
-	player1.push_back(new Background(*resourceMgr->GetTexture("graphics/player1.png"), Vector2f(this->window.getSize().x * 0.2, 500)));
-	player1.push_back(new Background(*resourceMgr->GetTexture("graphics/player2.png"), Vector2f(this->window.getSize().x * 0.2, 500)));
-	player1.push_back(new Background(*resourceMgr->GetTexture("graphics/player3.png"), Vector2f(this->window.getSize().x * 0.2, 500)));
-	player2.push_back(new Background(*resourceMgr->GetTexture("graphics/player1.png"), Vector2f(this->window.getSize().x * 0.75, 500)));
-	player2.push_back(new Background(*resourceMgr->GetTexture("graphics/player2.png"), Vector2f(this->window.getSize().x * 0.75, 500)));
-	player2.push_back(new Background(*resourceMgr->GetTexture("graphics/player3.png"), Vector2f(this->window.getSize().x * 0.75, 500)));
+	player1.push_back(new SpriteObj(*resourceMgr->GetTexture("graphics/player1.png"), Vector2f(this->window.getSize().x * 0.2, 500)));
+	player1.push_back(new SpriteObj(*resourceMgr->GetTexture("graphics/player2.png"), Vector2f(this->window.getSize().x * 0.2, 500)));
+	player1.push_back(new SpriteObj(*resourceMgr->GetTexture("graphics/player3.png"), Vector2f(this->window.getSize().x * 0.2, 500)));
+	player2.push_back(new SpriteObj(*resourceMgr->GetTexture("graphics/player1.png"), Vector2f(this->window.getSize().x * 0.75, 500)));
+	player2.push_back(new SpriteObj(*resourceMgr->GetTexture("graphics/player2.png"), Vector2f(this->window.getSize().x * 0.75, 500)));
+	player2.push_back(new SpriteObj(*resourceMgr->GetTexture("graphics/player3.png"), Vector2f(this->window.getSize().x * 0.75, 500)));
 	for (int i = 0; i < 2; ++i)
 	{
 		characters.push_back(Characters::Red);

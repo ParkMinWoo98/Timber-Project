@@ -1,6 +1,6 @@
 #include "Scene.h"
 #include "../Manager/ResourceMgr.h"
-#include "../SpriteObject/Background.h"
+#include "../SpriteObject/SpriteObj.h"
 #include "ModeScene.h"
 #include "CharacterScene.h"
 

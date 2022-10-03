@@ -2,16 +2,15 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
 #include "../Manager/ResourceMgr.h"
-#include "../SpriteObject/Background.h"
+#include "../SpriteObject/SpriteObj.h"
 #include "../SpriteObject/Button.h"
 #include "../Manager/InputMgr.h"
-#include "../SpriteObject/Background.h"
 
 CharacterScene::CharacterScene(RenderWindow& window)
 	:Scene(window)
 {
 	bgm.setBuffer(*resourceMgr->GetSoundBuffer("sound/game_bgm_character.wav"));
-	background = new Background(*resourceMgr->GetTexture("graphics/background_character.jpg"));
+	background = new SpriteObj(*resourceMgr->GetTexture("graphics/background_character.jpg"));
 }
 
 CharacterScene::~CharacterScene()
