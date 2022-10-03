@@ -12,6 +12,10 @@ SingleCharacterScene::SingleCharacterScene(RenderWindow& window)
 	player.push_back(new SpriteObj(*resourceMgr->GetTexture("graphics/player1.png"), Vector2f(this->window.getSize().x * 0.5, 500)));
 	player.push_back(new SpriteObj(*resourceMgr->GetTexture("graphics/player2.png"), Vector2f(this->window.getSize().x * 0.5, 500)));
 	player.push_back(new SpriteObj(*resourceMgr->GetTexture("graphics/player3.png"), Vector2f(this->window.getSize().x * 0.5, 500)));
+	for (auto p : player)
+	{
+		p->SetOrigin(Origins::MC);
+	}
 	characters.push_back(Characters::Red);
 }
 
