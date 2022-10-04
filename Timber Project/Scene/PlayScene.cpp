@@ -95,7 +95,7 @@ void PlayScene::Update()
 			p->SetTimer(0.f);
 		}
 		isPause = true;
-		messageText->SetString("Game Over!!\nPress Enter to start!");
+		messageText->SetString("Game Over!!");
 	}
 	// 타임바, 스코어텍스트
 
