@@ -4,7 +4,7 @@
 
 int main()
 {
-    VideoMode vm(1600, 900);
+    VideoMode vm(1920, 1080);
     RenderWindow window(vm, "Timber!!", Style::Default);
 
     Clock clock;
